@@ -622,6 +622,75 @@
             font-size: 20px;
             padding: 12px 30px;
         }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .question {
+                font-size: 28px;
+                padding: 15px 20px;
+            }
+
+            .cat-gif {
+                height: 200px;
+                width: 200px;
+            }
+
+            .animation-area {
+                height: 200px;
+            }
+
+            button {
+                padding: 14px 35px;
+                font-size: 18px;
+                border-width: 3px;
+                box-shadow: 0 4px 0 #4a2c2a, 0 8px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            @keyframes growButton {
+                from {
+                    padding: 14px 35px;
+                    font-size: 18px;
+                }
+
+                to {
+                    padding: 18px 45px;
+                    font-size: 22px;
+                }
+            }
+
+            .celebration-text {
+                font-size: 32px;
+                padding: 0 20px;
+            }
+
+            .celebration-cats {
+                width: 280px;
+                height: 220px;
+            }
+
+            .letter-content {
+                padding: 40px 25px;
+                border: 10px solid transparent;
+                border-image: url('https://raw.githubusercontent.com/Anand-Kumar-V/Antique-Scroll-Border/main/border.png') 30 stretch;
+            }
+
+            .letter-header h2 {
+                font-size: 32px;
+            }
+
+            .letter-text {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            .king-stamp {
+                width: 70px;
+                height: 70px;
+                font-size: 12px;
+                top: 15px;
+                left: 15px;
+            }
+        }
     </style>
 </head>
 
