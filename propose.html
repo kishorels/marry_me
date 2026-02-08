@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💍 Marriage Proposal - Tamil</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffe5f0 0%, #ffc9e5 50%, #ffb3d9 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Heart frame decoration */
+        .heart-frame {
+            position: relative;
+            padding: 30px 40px;
+            margin-bottom: 30px;
+        }
+
+        .heart-frame::before,
+        .heart-frame::after {
+            content: '💕';
+            position: absolute;
+            font-size: 40px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        .heart-frame::before {
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .heart-frame::after {
+            right: -20px;
+            animation-delay: 0.3s;
+        }
+
+        .question {
+            font-size: 40px;
+            font-weight: 900;
+            color: #c41e5e;
+            line-height: 1.6;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-in;
+            padding: 25px 35px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .question.celebrating {
+            font-size: 32px;
+            color: #ff1493;
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #ff1493, 3px 3px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            50% {
+                text-shadow: 0 0 20px #ff1493, 3px 3px 6px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        .animation-area {
+            position: relative;
+            height: 300px;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cats-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Cat GIFs area */
+        .cat-gif {
+            margin: 20px 0;
+            height: 300px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+        }
+
+        /* Better white background removal for all cat images */
+        .cat-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Stronger white background removal from top and bottom cats */
+        #topCat img,
+        #bottomCat img {
+            mix-blend-mode: multiply;
+            opacity: 0.95;
+        }
+
+        /* Keep the no cat GIF working perfectly as before */
+        #noCatGif img {
+            mix-blend-mode: multiply;
+        }
+
+        /* Celebration cats also get background removal */
+        .celebration-cats img {
+            mix-blend-mode: multiply;
+            opacity: 0.95;
+        }
+
+        .cat-gif#topCat {
+            display: none;
+        }
+
+        .cat-gif.playing {
+            animation: none;
+        }
+
+        .cat-gif.poking {
+            animation: pokingAnimation 0.8s ease-in-out infinite;
+        }
+
+        .cat-gif.hugging {
+            animation: huggingAnimation 1.2s ease-in-out infinite;
+        }
+
+        svg.peach-cat {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes pokingAnimation {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-15px) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        @keyframes huggingAnimation {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes bobbing {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Buttons container */
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            z-index: 20;
+            position: relative;
+        }
+
+        button {
+            padding: 18px 50px;
+            font-size: 24px;
+            font-weight: 900;
+            border: 4px solid #4a2c2a;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 0 #4a2c2a, 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 0 #4a2c2a, 0 13px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #4a2c2a, 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .yes-btn {
+            background: linear-gradient(180deg, #90EE90 0%, #32CD32 100%);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .yes-btn.growing {
+            animation: growButton 0.4s ease forwards;
+        }
+
+        @keyframes growButton {
+            from {
+                padding: 18px 50px;
+                font-size: 24px;
+            }
+
+            to {
+                padding: 22px 65px;
+                font-size: 28px;
+            }
+        }
+
+        .no-btn {
+            background: linear-gradient(180deg, #FF69B4 0%, #FF1493 100%);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .no-btn.shake {
+            animation: shakeButton 0.5s ease;
+        }
+
+        @keyframes shakeButton {
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            10% {
+                transform: translateX(-8px) rotate(-2deg);
+            }
+
+            20% {
+                transform: translateX(8px) rotate(2deg);
+            }
+
+            30% {
+                transform: translateX(-8px) rotate(-2deg);
+            }
+
+            40% {
+                transform: translateX(8px) rotate(2deg);
+            }
+
+            50% {
+                transform: translateX(-8px) rotate(-2deg);
+            }
+
+            60% {
+                transform: translateX(8px) rotate(2deg);
+            }
+
+            70% {
+                transform: translateX(-6px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translateX(6px) rotate(1deg);
+            }
+
+            90% {
+                transform: translateX(-3px) rotate(-0.5deg);
+            }
+        }
+
+        /* Celebration screen */
+        .celebration-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #ffc0cb 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            animation: fadeInScale 0.6s ease forwards;
+        }
+
+        .celebration-message.show {
+            display: flex;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .celebration-text {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 4px 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 4px 4px 8px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .celebration-cats {
+            margin: 30px 0;
+            animation: huggingCats 1.5s ease-in-out infinite;
+            width: 350px;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .celebration-cats img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes huggingCats {
+
+            0%,
+            100% {
+                transform: scale(1) rotateZ(0deg);
+            }
+
+            50% {
+                transform: scale(1.1) rotateZ(2deg);
+            }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 40px;
+            animation: float 3s ease-in infinite;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) translateX(0) scale(0);
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px) scale(1);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hide {
+            display: none;
+        }
+
+        /* Royal Love Letter Modal */
+        .letter-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .letter-modal.show {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .letter-content {
+            background: #fdf5e6;
+            background-image: url('https://www.transparenttextures.com/patterns/old-paper.png');
+            padding: 50px 40px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.7);
+            border: 20px solid transparent;
+            border-image: url('https://raw.githubusercontent.com/Anand-Kumar-V/Antique-Scroll-Border/main/border.png') 30 stretch;
+            font-family: 'Georgia', serif;
+            color: #3d2b1f;
+            line-height: 2.2;
+            text-align: center;
+            border-radius: 5px;
+            animation: scrollUnroll 1s ease-out;
+        }
+
+        @keyframes scrollUnroll {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        .letter-content::before {
+            content: '❦';
+            display: block;
+            font-size: 30px;
+            color: #8b0000;
+            margin-bottom: 20px;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .letter-header h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 45px;
+            color: #8b0000;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-text {
+            font-size: 22px;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 32px;
+            color: #8b0000;
+        }
+
+        .king-stamp {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #b22222 0%, #8b0000 100%);
+            color: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            transform: rotate(-15deg);
+            border: 2px solid #5d0000;
+            padding: 5px;
+            text-align: center;
+            line-height: 1.2;
+            animation: stampPulse 2s infinite ease-in-out;
+            z-index: 10;
+        }
+
+        @keyframes stampPulse {
+
+            0%,
+            100% {
+                transform: rotate(-20deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(-20deg) scale(1.05);
+            }
+        }
+
+        .close-letter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #8b4513;
+            transition: transform 0.3s;
+        }
+
+        .close-letter:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        .click-here-btn {
+            margin-top: 20px;
+            background: linear-gradient(180deg, #ffd700 0%, #daa520 100%);
+            color: #4a2c2a;
+            border: 2px solid #4a2c2a;
+            box-shadow: 0 4px 0 #4a2c2a;
+            font-size: 20px;
+            padding: 12px 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heart-frame">
+            <div class="question" id="question">
+                என்னை கல்யாணம் பண்ண<br>சம்மதமா? 💍
+            </div>
+        </div>
+
+        <div class="cat-gif" id="topCat">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjBmZjh6Y25rNmg3MnNlMzdxYTZ1Z3VuYjA0bmR6MTE1bDFzZm9wOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/f9EmXxglhdhAj1bo28/giphy.gif"
+                alt="Cute cat" />
+        </div>
+
+        <div class="buttons">
+            <button class="yes-btn" id="yesBtn">❤️ Yes ❤️</button>
+            <button class="no-btn" id="noBtn" data-clicks="0">No 😢</button>
+        </div>
+
+        <div class="cat-gif" id="bottomCat">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjBmZjh6Y25rNmg3MnNlMzdxYTZ1Z3VuYjA0bmR6MTE1bDFzZm9wOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/f9EmXxglhdhAj1bo28/giphy.gif"
+                alt="Cute cat" />
+        </div>
+
+        <div class="cat-gif" id="noCatGif" style="display: none;">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHp4NDFydm42OHYyMGs1ZGN2ajN1cHhoMTA2M3Y4dHcxdTA4cm1heCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIP9fFNlze8c1ft6/giphy.gif"
+                alt="Bonking cat" />
+        </div>
+    </div>
+
+    <div class="celebration-message" id="celebrationScreen">
+        <div class="floating-hearts" id="floatingHearts"></div>
+        <div class="celebration-text">
+            எனக்கு தெரியும்<br>நீ என்னதான் கல்யாணம்<br>பண்ணுவே 😍
+        </div>
+        <div class="celebration-cats">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTd2cHZwdW9uZXZhMnVvbGVmcXVjeW91ZHQ4Z292azJtOG92Nm9maCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KyEtlYiutRHVC68Ess/giphy.gif"
+                alt="Happy celebration cats" />
+        </div>
+        <button class="click-here-btn" id="clickHereBtn">இங்கே கிளிக் செய்யவும் ✨</button>
+    </div>
+
+    <!-- Royal Love Letter Modal -->
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-content">
+            <span class="close-letter" id="closeLetter">&times;</span>
+            <div class="letter-header">
+                <h2>My Dearest Rose</h2>
+            </div>
+            <div class="letter-text">
+                உன்னைப் பார்த்த அந்த முதல் நொடியில் இருந்து என் உலகம் அழகாக மாறிவிட்டது. <br><br>
+                என் மகிழ்ச்சி, சிரிப்பு, கனவு எல்லாமே நீ தான். உன்னோடு கைக்கோர்த்து என் வாழ்க்கையின் ஒவ்வொரு நொடியையும்
+                கழிக்க ஆசைப்படுகிறேன். <br><br>
+                என் வாழ்க்கைத் துணையாக <br><b>(Life Partner-ஆக)</b> வருவாயா? ❤️
+            </div>
+            <div class="letter-footer">
+                என்றும் உன் அன்புடன்,<br>
+                உன் ராயல் மன்னன் 👑
+            </div>
+            <div class="king-stamp">My<br>Heart<br>❤️</div>
+        </div>
+    </div>
+
+    <script>
+        const question = document.getElementById('question');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const topCat = document.getElementById('topCat');
+        const bottomCat = document.getElementById('bottomCat');
+        const noCatGif = document.getElementById('noCatGif');
+        const celebrationScreen = document.getElementById('celebrationScreen');
+        const floatingHearts = document.getElementById('floatingHearts');
+
+        const noMessages = [
+            "No 😢",
+            "இல்ல 😌",
+            "escape ஆக try பண்றாயோ? 😏",
+            "கொளுப்பு தானே 😜"
+        ];
+
+        let noClickCount = 0;
+
+        // Initialize animations
+        topCat.classList.add('poking');
+        bottomCat.classList.add('hugging');
+
+        yesBtn.addEventListener('click', () => {
+            yesBtn.disabled = true;
+            noBtn.disabled = true;
+
+            // Hide main container and show celebration
+            document.querySelector('.heart-frame').style.display = 'none';
+            topCat.style.display = 'none';
+            bottomCat.style.display = 'none';
+            noCatGif.style.display = 'none';
+            document.querySelector('.buttons').style.display = 'none';
+
+            celebrationScreen.classList.add('show');
+
+            // Create floating hearts
+            createFloatingHearts();
+        });
+
+        noBtn.addEventListener('click', () => {
+            // Add shake animation
+            noBtn.classList.add('shake');
+            setTimeout(() => noBtn.classList.remove('shake'), 500);
+
+            // Grow yes button
+            yesBtn.classList.add('growing');
+            setTimeout(() => yesBtn.classList.remove('growing'), 400);
+
+            // Show no cat GIF animation on first no click
+            if (noClickCount === 0) {
+                topCat.style.display = 'none';
+                bottomCat.style.display = 'none';
+                noCatGif.style.display = 'flex';
+            }
+
+            // Update no button text
+            noClickCount++;
+            if (noClickCount < noMessages.length) {
+                noBtn.textContent = noMessages[noClickCount];
+            } else if (noClickCount === noMessages.length) {
+                // After 4th click, hide no button and change question
+                noBtn.style.display = 'none';
+                question.textContent = 'உனக்கு வர வழி இல்ல 😈';
+                question.classList.add('celebrating');
+            }
+
+            noBtn.dataset.clicks = noClickCount;
+        });
+
+        const clickHereBtn = document.getElementById('clickHereBtn');
+        const letterModal = document.getElementById('letterModal');
+        const closeLetter = document.getElementById('closeLetter');
+
+        clickHereBtn.addEventListener('click', () => {
+            letterModal.classList.add('show');
+        });
+
+        closeLetter.addEventListener('click', () => {
+            letterModal.classList.remove('show');
+        });
+
+        // Close modal when clicking outside content
+        window.addEventListener('click', (event) => {
+            if (event.target === letterModal) {
+                letterModal.classList.remove('show');
+            }
+        });
+
+        function createFloatingHearts() {
+            const hearts = ['💕', '💖', '💗'];
+            for (let i = 0; i < 15; i++) { // Increased number of hearts
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = (Math.random() * 3) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                floatingHearts.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+
+</html>
